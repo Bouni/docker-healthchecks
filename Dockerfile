@@ -43,7 +43,7 @@ USER healthchecks
 
 VOLUME ["/data"]
 
-EXPOSE 8000/tcp
+#EXPOSE 8000/tcp
 
 ENTRYPOINT ["/entrypoint.sh"]
 
