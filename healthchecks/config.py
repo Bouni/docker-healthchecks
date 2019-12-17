@@ -4,7 +4,7 @@ config = """
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/data/hc.sqlite',
+        'NAME': '/data/healthchecks.sqlite',
         }
     }
 SECRET_KEY = "9xQoNhBLywc0N++CXmI+Gfe7xrbx/PCKtbbRVfGMJ/M="
