@@ -8,7 +8,7 @@ services:
     build: ./healthchecks
     volumes:
       - HC_STATIC:/healthchecks/static
-      - HC_DB:/data
+      - ./data:/data
     env_file: healthchecks/healthchecks.env
 
   healthchecks-nginx:
@@ -48,4 +48,3 @@ services:
 
 volumes:
   HC_STATIC: {}
-  HC_DB: {}
