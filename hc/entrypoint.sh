@@ -3,7 +3,7 @@
 app_run() {
     python3 /config.py
     python3 /healthchecks/manage.py compress
-    ln -s /healthchecks/static-collected/CACHE /healthchecks/static/CACHE
+    cp -r /healthchecks/static-collected/CACHE /healthchecks/static/CACHE
     chmod 755 -f /healthchecks/hc/settings.py /healthchecks/hc/local_settings.py
     python3 /healthchecks/manage.py migrate --noinput
     exec supervisord -c /etc/supervisor/supervisord.conf
