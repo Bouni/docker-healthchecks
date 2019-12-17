@@ -69,8 +69,9 @@ with open("/healthchecks/hc/local_settings.py", "w") as f:
     for var in ENVVARS:
         v = os.getenv(f"HC_{var['var']}")
         if not v:
+            print(f"ENV var HC_{var['var']} not found.")
             continue
         if var['type'] == "string":
             f.write(f"{var['var']} = \"{v}\"\n")
-        elif var['type'] == "bool" or var['type'] == "int":
+        elif var['type'] == "bool" or var['type'] == "int" or  var['type'] == "array":
             f.write(f"{var['var']} = {v}\n")

@@ -1,0 +1,26 @@
+debug: false
+logLevel: ERROR
+defaultEntryPoints:
+  - https
+  - http
+entryPoints:
+  http:
+    address: ':80'
+    redirect:
+      entryPoint: https
+  https:
+    address: ':443'
+    tls: {}
+retry: {}
+docker:
+  endpoint: 'unix:///var/run/docker.sock'
+  watch: true
+  exposedByDefault: false
+acme:
+  email: bouni+healthchecks@owee.de
+  storage: acme.json
+  entryPoint: https
+  onHostRule: true
+  httpChallenge:
+    entryPoint: http
+

@@ -1,0 +1,44 @@
+---
+version: "3"
+
+services:
+
+  hc:
+    container_name: hc
+    build: ./hc
+    volumes:
+      - HC_STATIC:/healthchecks/static
+      - HC_DB:/data
+    env_file: hc/hc.env
+
+  hc-web:
+    container_name: hc-web
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - HC_STATIC:/healthchecks/static
+    restart: always
+    labels:
+      - traefik.enable=true
+      - traefik.frontend.rule=Host:healthcheck.bouni.de
+
+
+  traefik:
+    container_name: traefik
+    image: traefik:1.7
+    command: --api --docker
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 127.0.0.1:8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.yaml:/traefik.yaml
+      - ./traefik/acme.json:/acme.json
+    labels:
+      - traefik.enable=false
+
+volumes:
+  HC_STATIC: {}
+  HC_DB: {}
