@@ -30,7 +30,6 @@ RUN pip3 install gunicorn psycopg2 && \
 
 RUN apk del python3-dev gcc musl-dev postgresql-dev git
 
-COPY config.py /config.py
 COPY entrypoint.sh /entrypoint.sh
 COPY supervisord.conf /etc/supervisor/
 RUN chmod +x /entrypoint.sh
@@ -42,8 +41,6 @@ RUN chown -R healthchecks:healthchecks \
 USER healthchecks
 
 VOLUME ["/data"]
-
-#EXPOSE 8000/tcp
 
 ENTRYPOINT ["/entrypoint.sh"]
 

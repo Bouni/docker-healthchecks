@@ -1,7 +1,6 @@
 #!/bin/sh
 
 app_run() {
-    python3 /config.py
     python3 /healthchecks/manage.py compress
     cp -r /healthchecks/static-collected/CACHE /healthchecks/static/CACHE
     chmod 755 -f /healthchecks/hc/settings.py /healthchecks/hc/local_settings.py
